@@ -1,0 +1,65 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR --export EDITOR:/usr/bin/micro
+SETUVAR --export GREP_COLORS:ms\x3d48\x3b5\x3b239\x3b38\x3b2\x3b13\x3b205\x3b205
+SETUVAR --export MICRO_TRUECOLOR:1
+SETUVAR --export --path PATH:/home/ceeb/\x2elocal/bin\x1e/home/ceeb/\x2evolta/bin\x1e/home/ceeb/\x2ecargo/bin\x1e/home/ceeb/\x2envm/versions/node/v16\x2e13\x2e2/bin\x1e/home/ceeb/\x2evolta/bin\x1e/usr/local/sbin\x1e/usr/local/bin\x1e/usr/bin\x1e/opt/cuda/bin\x1e/opt/cuda/nsight_compute\x1e/opt/cuda/nsight_systems/bin\x1e/home/ceeb/\x2edotnet/tools\x1e/home/ceeb/\x2elocal/share/flatpak/exports/bin\x1e/var/lib/flatpak/exports/bin\x1e/usr/lib/jvm/default/bin\x1e/usr/bin/site_perl\x1e/usr/bin/vendor_perl\x1e/usr/bin/core_perl
+SETUVAR --export PROTON:/home/ceeb/games/steamapps/common/Proton\x20\x2d\x20Experimental/proton
+SETUVAR --export TERM:ansi
+SETUVAR --export TORCH_CUDA_ARCH_LIST:8\x2e6
+SETUVAR --export _JAVA_OPTIONS:\x2dDswing\x2eaatext\x3dTRUE\x20\x2dDawt\x2euseSystemAAFontSettings\x3don
+SETUVAR __fish_initialized:3400
+SETUVAR _fish_abbr_gpkg:paru\x20\x2dSyu
+SETUVAR _fish_abbr_rpkg:paru\x20\x2dRns
+SETUVAR _fish_abbr_spkg:paru\x20\x2dSs\x20\x2d\x2dbottomup
+SETUVAR _fish_abbr_updown:paru\x20\x2dSyu\x20\x2d\x2dskipreview\x20\x26\x26\x20shutdown\x20now
+SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
+SETUVAR _fisher_plugins:jorgebucaran/fisher
+SETUVAR _fisher_upgraded_to_4_4:\x1d
+SETUVAR --export bootdelay:0
+SETUVAR fish_color_autosuggestion:707A8C
+SETUVAR fish_color_cancel:\x2d\x2dreverse
+SETUVAR fish_color_command:458588
+SETUVAR fish_color_comment:5C6773
+SETUVAR fish_color_cwd:73D0FF
+SETUVAR fish_color_cwd_root:red
+SETUVAR fish_color_description:02a9ea
+SETUVAR fish_color_end:F29E74
+SETUVAR fish_color_err:c63235
+SETUVAR fish_color_error:FF3333
+SETUVAR fish_color_escape:95E6CB
+SETUVAR fish_color_history_current:\x2d\x2dbold
+SETUVAR fish_color_host:normal
+SETUVAR fish_color_host_remote:\x1d
+SETUVAR fish_color_keyword:\x1d
+SETUVAR fish_color_match:F28779
+SETUVAR fish_color_normal:EBDBB2
+SETUVAR fish_color_operator:FFCC66
+SETUVAR fish_color_option:\x1d
+SETUVAR fish_color_param:CBCCC6
+SETUVAR fish_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
+SETUVAR fish_color_pwd:cf21ff
+SETUVAR fish_color_quote:BAE67E
+SETUVAR fish_color_redirection:D4BFFF
+SETUVAR fish_color_search:02a9ea
+SETUVAR fish_color_search_match:\x2d\x2dbackground\x3dFFCC66
+SETUVAR fish_color_selection:\x2d\x2dbackground\x3dFFCC66
+SETUVAR fish_color_status:c63235
+SETUVAR fish_color_user:brgreen
+SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR fish_greeting:\x1d
+SETUVAR fish_key_bindings:fish_default_key_bindings
+SETUVAR fish_pager_color_background:\x1d
+SETUVAR fish_pager_color_completion:normal
+SETUVAR fish_pager_color_description:B3A06D
+SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
+SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+SETUVAR fish_pager_color_secondary_background:\x1d
+SETUVAR fish_pager_color_secondary_completion:\x1d
+SETUVAR fish_pager_color_secondary_description:\x1d
+SETUVAR fish_pager_color_secondary_prefix:\x1d
+SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3dFFCC66
+SETUVAR fish_pager_color_selected_completion:\x1d
+SETUVAR fish_pager_color_selected_description:\x1d
+SETUVAR fish_pager_color_selected_prefix:\x1d
+SETUVAR fish_user_paths:/home/ceeb/\x2elocal/bin\x1e/home/ceeb/\x2ecargo/bin
