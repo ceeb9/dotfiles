@@ -2,6 +2,6 @@
 !.gitignore
 !**nvim/
 !**alacritty/
-!**fish/**
-fish/fish_variables
-fish/fish_history
+!fish/config.fish
+!fish/functions/**
+!fish/themes/**
