@@ -5,3 +5,4 @@
 !fish/config.fish
 !fish/functions/**
 !fish/themes/**
+!fish/fish_plugins

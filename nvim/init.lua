@@ -15,6 +15,10 @@ require('packer').startup(function(use)
 
     --autocomplete
     use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'saadparwaiz1/cmp_luasnip'
+    use 'hrsh7th/cmp-nvim-lsp'
     use 'L3MON4D3/LuaSnip'
 
     --themes
@@ -40,7 +44,7 @@ end)
 vim.diagnostic.config({
     virtual_text = false
 })
-vim.o.updatetime = 250
+vim.o.updatetime = 1000
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
 --lsp settings
@@ -51,57 +55,11 @@ require("mason-lspconfig").setup({ ensure_installed = {
     "clangd",
     "rust_analyzer",
     "html",
-    "eslint",
+    "denols",
     "cssls"}
 })
 
 local lspconf = require("lspconfig")
-lspconf.lua_ls.setup {
-    settings = {
-        Lua = {
-            runtime = {
-                version = 'LuaJIT',
-            },
-            diagnostics = {
-                globals = {'vim'},
-            },
-            workspace = {
-                library = vim.api.nvim_get_runtime_file("", true),
-                checkThirdParty = false;
-            },
-            telemetry = {
-                enable = false;
-            }
-        },
-    },
-}
-
-lspconf.pyright.setup {}
-lspconf.clangd.setup {}
-lspconf.rust_analyzer.setup {}
-lspconf.eslint.setup({
-    on_attach = function(client, bufnr)
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            command = "EslintFixAll",
-        })
-    end,
-})
-
-lspconf.html.setup {}
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snipperSupport = true
-lspconf.cssls.setup {
-    capabilities = capabilities,
-}
-
--- autocomplete settings
-vim.opt.completeopt = {
-    'menu',
-    'menuone',
-    'noselect',
-}
 
 local cmp = require('cmp')
 local luasnip = require('luasnip')
@@ -109,14 +67,13 @@ local select_opts = {behavior = cmp.SelectBehavior.Select}
 
 cmp.setup({
     snippet = {
-    expand = function(args)
-        luasnip.lsp_expand(args.body)
-        end
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+            end
     },
     sources = {
         {name = 'path'},
-        {name = 'nvim_lsp', keyword_length = 1},
-        {name = 'buffer', keyword_length = 2},
+        {name = 'nvim_lsp'},
     },
     window = {
         documentation = cmp.config.window.bordered()
@@ -150,6 +107,56 @@ cmp.setup({
         end, {'i', 's'}),
     }
 })
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+lspconf['lua_ls'].setup({
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            runtime = {
+                version = 'LuaJIT',
+            },
+            diagnostics = {
+                globals = {'vim'},
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false;
+            },
+            telemetry = {
+                enable = false;
+            }
+        },
+    },
+})
+
+lspconf.pyright.setup {
+    capabilities = capabilities,
+}
+lspconf.clangd.setup {
+    capabilities = capabilities,
+}
+lspconf.rust_analyzer.setup {
+    capabilities = capabilities,
+}
+lspconf.denols.setup {
+    capabilities = capabilities,
+}
+lspconf.html.setup {
+    capabilities = capabilities,
+}
+lspconf.cssls.setup {
+    capabilities = capabilities,
+}
+
+-- autocomplete settings
+vim.opt.completeopt = {
+    'menu',
+    'menuone',
+    'noselect',
+}
+
 
 --theme settings
 vim.o.background = "dark"
