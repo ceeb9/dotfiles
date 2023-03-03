@@ -1,0 +1,7 @@
+*
+!.gitignore
+!**nvim/
+!**alacritty/
+!**fish/**
+fish/fish_variables
+fish/fish_history
