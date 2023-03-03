@@ -1,24 +1,155 @@
 --load plugins
 vim.cmd([[packadd packer.nvim]])
 require('packer').startup(function(use)
+
     use 'wbthomason/packer.nvim'
+
     --syntax highlighting
     use 'nvim-treesitter/nvim-treesitter'
     use "lukas-reineke/indent-blankline.nvim"
+
     --lsp
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
+
+    --autocomplete
+    use 'hrsh7th/nvim-cmp'
+    use 'L3MON4D3/LuaSnip'
+
     --themes
     use 'ellisonleao/gruvbox.nvim'
+
     --status line
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
+
     --autopair
     use 'windwp/nvim-autopairs'
+
+    -- markdown preview plugin
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
 end)
+
+-- diagnostic message configs
+vim.diagnostic.config({
+    virtual_text = false
+})
+vim.o.updatetime = 250
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+--lsp settings
+require("mason").setup()
+require("mason-lspconfig").setup({ ensure_installed = {
+    "lua_ls",
+    "pyright",
+    "clangd",
+    "rust_analyzer",
+    "html",
+    "eslint",
+    "cssls"}
+})
+
+local lspconf = require("lspconfig")
+lspconf.lua_ls.setup {
+    settings = {
+        Lua = {
+            runtime = {
+                version = 'LuaJIT',
+            },
+            diagnostics = {
+                globals = {'vim'},
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false;
+            },
+            telemetry = {
+                enable = false;
+            }
+        },
+    },
+}
+
+lspconf.pyright.setup {}
+lspconf.clangd.setup {}
+lspconf.rust_analyzer.setup {}
+lspconf.eslint.setup({
+    on_attach = function(client, bufnr)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll",
+        })
+    end,
+})
+
+lspconf.html.setup {}
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snipperSupport = true
+lspconf.cssls.setup {
+    capabilities = capabilities,
+}
+
+-- autocomplete settings
+vim.opt.completeopt = {
+    'menu',
+    'menuone',
+    'noselect',
+}
+
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+local select_opts = {behavior = cmp.SelectBehavior.Select}
+
+cmp.setup({
+    snippet = {
+    expand = function(args)
+        luasnip.lsp_expand(args.body)
+        end
+    },
+    sources = {
+        {name = 'path'},
+        {name = 'nvim_lsp', keyword_length = 1},
+        {name = 'buffer', keyword_length = 2},
+    },
+    window = {
+        documentation = cmp.config.window.bordered()
+    },
+    formatting = {
+        fields = {'menu', 'kind', 'abbr'}
+    },
+    mapping = {
+        ['<CR>'] = cmp.mapping.confirm({select = false}),
+        ['<C-k>'] = cmp.mapping.select_prev_item(select_opts),
+        ['<C-j>'] = cmp.mapping.select_next_item(select_opts),
+
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            local col = vim.fn.col('.') - 1
+
+            if cmp.visible() then
+                cmp.select_next_item(select_opts)
+            elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+                fallback()
+            else
+                cmp.complete()
+            end
+        end, {'i', 's'}),
+
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item(select_opts)
+            else
+                fallback()
+            end
+        end, {'i', 's'}),
+    }
+})
 
 --theme settings
 vim.o.background = "dark"
@@ -44,6 +175,10 @@ require("indent_blankline").setup {
     char = '┃'
 }
 
+-- markdown preview plugin
+vim.cmd('let g:mkdp_auto_start = 1')
+vim.cmd("let g:mkdp_theme = 'dark'")
+
 --lualine settings
 require('lualine').setup {
     options = {
@@ -54,15 +189,6 @@ require('lualine').setup {
     }
 }
 
---lsp settings
-require("mason").setup()
-require("mason-lspconfig").setup({ ensure_installed = { "sumneko_lua", "pyright", "clangd", "rust_analyzer" } })
-
-local lspconf = require("lspconfig")
-lspconf.sumneko_lua.setup {}
-lspconf.pyright.setup {}
-lspconf.clangd.setup {}
-lspconf.rust_analyzer.setup {}
 
 --neovim settings
 vim.opt.wrap = false
