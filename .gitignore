@@ -6,3 +6,4 @@
 !fish/functions/**
 !fish/themes/**
 !fish/fish_plugins
+!Passwords.kdbx
