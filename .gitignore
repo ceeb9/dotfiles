@@ -1,10 +1,10 @@
-*
+/*
 !.gitignore
-!**nvim/
-!**alacritty/
+!nvim/
+!alacritty/
 !fish/config.fish
 !fish/functions/**
 !fish/themes/**
 !fish/fish_plugins
 !Passwords.kdbx
-!**neofetch/
+!neofetch/
