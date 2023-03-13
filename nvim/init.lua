@@ -22,7 +22,8 @@ require('packer').startup(function(use)
     use 'L3MON4D3/LuaSnip'
 
     --themes
-    use 'ellisonleao/gruvbox.nvim'
+    use 'folke/tokyonight.nvim'
+    use 'xiyaowong/nvim-transparent'
 
     --status line
     use {
@@ -159,9 +160,10 @@ vim.opt.completeopt = {
 
 
 --theme settings
-vim.o.background = "dark"
-require("gruvbox").setup()
-vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[colorscheme tokyonight-night]])
+require('transparent').setup({
+    enable = true
+})
 
 --treesitter settings
 local tsconfigs = require 'nvim-treesitter.configs'
@@ -189,7 +191,7 @@ vim.cmd("let g:mkdp_theme = 'dark'")
 --lualine settings
 require('lualine').setup {
     options = {
-        theme = 'gruvbox_dark',
+        theme = 'tokyonight',
         component_separators = { left = '|', right = '|'},
         section_separators = { left = '', right = ''},
         icons_enabled = true,
