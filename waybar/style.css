@@ -93,9 +93,7 @@ button:hover {
 }
 
 #cpu {
-    padding-right: 4px; 
     margin-right: 0px;
-    margin-left: 0px;
     color: #31c0ef;
     border-right: 0;
     border-top-right-radius: 0px;
@@ -133,10 +131,6 @@ button:hover {
     color: #05F294;
 }
 
-#wlr-workspaces {
-
-}
-
 #network {
     color: #05f294;
 }
@@ -150,7 +144,6 @@ button:hover {
 }
 
 #tray menu {
-    margin-right: 0px;
     background-color: #3F3F3F;
     color: #ffffff;
 }
@@ -160,12 +153,12 @@ button:hover {
     margin: 0 4px;
 }
 
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 10px;
+.modules-left {
+    margin-left: 6px;
 }
 
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 10px;
+.modules-right {
+    margin-right: 6px;
 }
 
 @keyframes blink {

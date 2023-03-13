@@ -80,7 +80,7 @@
     },
 
     "network": {
-        "format": "",
+        "format": "Connected ",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
