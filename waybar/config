@@ -7,11 +7,15 @@
     "margin-top": 6,
 
     // Choose the order of the modules
-    "modules-left": ["cpu", "temperature", "custom/gpu-usage", "custom/gpu-temperature", "memory",],
+    "modules-left": ["cpu", "temperature", "custom/separator", "custom/gpu-usage", "custom/gpu-temperature", "custom/separator", "memory",],
     "modules-center": ["wlr/workspaces"],
-    "modules-right": ["network", "pulseaudio", "clock", "tray"],
+    "modules-right": ["network", "custom/separator", "pulseaudio", "custom/separator", "clock", "custom/separator", "tray"],
 
     // Modules configuration
+    "custom/separator": {
+        "format": "|"
+    },
+
     "tray": {
         "icon-size": 20,
         "spacing": 10
@@ -76,11 +80,7 @@
     },
 
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
+        "format": "",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
