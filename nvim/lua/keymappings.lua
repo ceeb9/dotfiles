@@ -1,3 +1,4 @@
+vim.api.timeoutlen = 100
 local key_mapper = function(mode, key, result)
     vim.api.nvim_set_keymap(
         mode,
@@ -13,5 +14,5 @@ key_mapper('', '<left>', '<nop>')
 key_mapper('', '<right>', '<nop>')
 
 --exit mode bindings
-key_mapper('i', 'nm', '<ESC>')
-key_mapper('v', 'nm', '<ESC>')
+key_mapper('i', 'jk', '<ESC>')
+key_mapper('v', 'jk', '<ESC>')

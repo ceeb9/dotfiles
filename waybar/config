@@ -1,15 +1,15 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "width": 1908,
+    "width": 2228,
     "height": 28, // Waybar height (to be removed for auto height)
     "spacing": 0, // Gaps between modules (4px)
     "margin-top": 6,
 
     // Choose the order of the modules
-    "modules-left": ["cpu", "temperature", "custom/separator", "custom/gpu-usage", "custom/gpu-temperature", "custom/separator", "memory",],
+    "modules-left": ["cpu", "temperature", "custom/separator", "battery", "custom/separator", "memory",],
     "modules-center": ["wlr/workspaces"],
-    "modules-right": ["network", "custom/separator", "pulseaudio", "custom/separator", "clock", "custom/separator", "tray"],
+    "modules-right": ["backlight", "custom/separator", "network", "custom/separator", "pulseaudio", "custom/separator", "clock", "custom/separator", "tray"],
 
     // Modules configuration
     "custom/separator": {
@@ -31,18 +31,9 @@
         "tooltip": false
     },
 
-    "custom/gpu-usage": {
-        "exec": "cat /sys/class/hwmon/hwmon0/device/gpu_busy_percent",
-        "format": "{}% GPU",
-        "return-type": "",
-        "interval": 1
-    },
-
-    "custom/gpu-temperature": {
-        "exec": "echo $(cat /sys/class/hwmon/hwmon0/temp1_input)/1000 | bc",
-        "format": "{}°C ",
-        "return-type": "",
-        "interval": 1
+    "battery": {
+        "format-icons": ["", "", "", "", ""],
+        "format": "{icon} {capacity}%",
     },
 
     "memory": {
@@ -51,7 +42,7 @@
 
     "temperature": {
         // "thermal-zone": 2,
-        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
